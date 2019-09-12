@@ -8,7 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image:  cirrusci/flutter:v1.9.1-hotfix.1-web
+      image:  cirrusci/flutter:stable
+      volumes:
+        - ${PWD}:/build
+      options: --workdir /build
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies
