@@ -6,7 +6,7 @@ commands:
       content:
         type: string
     steps:
-      - run: docker run --rm -it -v ${PWD}:/build --workdir /build cirrusci/flutter:stable <<parameters.content>>
+      - run: echo ${PWD} && docker run --rm -it -v ${PWD}:/build --workdir /build cirrusci/flutter:stable <<parameters.content>>
 
 jobs:
   build:
