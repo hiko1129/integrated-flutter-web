@@ -5,16 +5,15 @@ on: [push]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
 
     container:
       image:  cirrusci/flutter:stable
-      options: --workdir /build
     steps:
       - uses: actions/checkout@v1
       - name: PWD
         run: echo ${PWD}
       - name: Install dependencies
-        run: pwd && ls -la && sudo su - && flutter pub get
+        run: pwd && ls -la && sudo su - && sudo chown -R cirrus:cirrus ./ && flutter pub get
       - name: Run tests
         run: flutter test
