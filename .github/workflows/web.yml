@@ -10,10 +10,10 @@ jobs:
     container:
       image:  cirrusci/flutter:stable
     steps:
+      - name: setup flutter
+        run: wget https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.9.1+hotfix.2-stable.tar.xz && tar xf ./flutter_linux_v1.9.1+hotfix.2-stable.tar.xz && export PATH="$PATH:`pwd`/flutter/bin"
       - uses: actions/checkout@v1
-      - name: PWD
-        run: echo ${PWD}
       - name: Install dependencies
-        run: pwd && ls -la && sudo su - && sudo chown -R cirrus:cirrus ./ && flutter pub get
+        run: flutter pub get
       - name: Run tests
         run: flutter test
