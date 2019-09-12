@@ -9,8 +9,6 @@ jobs:
 
     container:
       image:  cirrusci/flutter:stable
-      volumes:
-        - /__w/integrated-flutter-web/integrated-flutter-web:/build
       options: --workdir /build
     steps:
       - uses: actions/checkout@v1
