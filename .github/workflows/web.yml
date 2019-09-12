@@ -16,7 +16,7 @@ jobs:
       - name: setup flutter
         uses: subosito/flutter-action@v1
         with:
-          flutter-version: '1.9.1+hotfix.2'
+          flutter-version: '1.9.x'
       - name: install dependencies
         run: flutter pub get
       - name: test
