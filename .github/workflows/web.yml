@@ -10,10 +10,12 @@ jobs:
     container:
       image:  cirrusci/flutter:stable
       volumes:
-        - ${PWD}:/build
+        - /__w/integrated-flutter-web/integrated-flutter-web:/build
       options: --workdir /build
     steps:
       - uses: actions/checkout@v1
+      - name: PWD
+        run: echo ${PWD}
       - name: Install dependencies
         run: pwd && ls -la && flutter pub get
       - name: Run tests
