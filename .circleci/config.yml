@@ -1,0 +1,34 @@
+version: 2.1
+
+commands:
+  exec_command:
+    parameters:
+      content:
+        type: string
+    steps:
+      - run: docker run --rm -it -v ${PWD}:/build --workdir /build cirrusci/flutter:stable <<parameters.content>>
+
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+
+      - exec_command:
+          content: flutter pub get
+
+      - exec_command:
+          content: flutter test
+
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build
+#     - deploy_production:
+#          filters:
+#            branches:
+#              only: master
+#          requires:
+#            - build
