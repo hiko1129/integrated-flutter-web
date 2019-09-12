@@ -10,10 +10,9 @@ jobs:
     container:
       image:  cirrusci/flutter:stable
     steps:
-      - name: setup flutter
-        run: ls -la && pwd && wget https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.9.1+hotfix.2-stable.tar.xz && sudo tar xf ./flutter_linux_v1.9.1+hotfix.2-stable.tar.xz && export PATH="$PATH:`pwd`/flutter/bin"
       - uses: actions/checkout@v1
-      - name: Install dependencies
-        run: flutter pub get
-      - name: Run tests
-        run: flutter test
+      - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '1.9.1+hotfix.2'
+      - run: flutter pub get
+      - run: flutter test
